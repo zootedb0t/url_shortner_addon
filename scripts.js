@@ -1,5 +1,11 @@
 function getUrl() {
   browser.tabs.query({ currentWindow: true, active: true }).then((tabs) => {
-    console.log(tabs[0].url);
+    let tabUrl = tabs[0].url;
+    console.log(tabUrl);
+    let debug = document.getElementById("copy-url");
+    debug.innerHTML = `<li>${tabUrl}</li>`;
   });
 }
+
+const url = document.querySelector("#geturl");
+url.addEventListener("click", getUrl);
