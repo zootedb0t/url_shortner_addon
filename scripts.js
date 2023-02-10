@@ -9,3 +9,16 @@ function getUrl() {
 
 const url = document.querySelector("#geturl");
 url.addEventListener("click", getUrl);
+
+const bitly_api = fetch("https://api-ssl.bitly.com/v4/shorten", {
+  method: "POST",
+  headers: {
+    Authorization: "xxxxx",
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    long_url: "https://dev.bitly.com",
+    domain: "bit.ly",
+    group_guid: "xxxxx",
+  }),
+});
