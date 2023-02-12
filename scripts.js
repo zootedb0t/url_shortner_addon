@@ -7,9 +7,7 @@ const copytoclipboard = document.getElementById("copytoclipboard");
 function getUrl() {
   browser.tabs.query({ currentWindow: true, active: true }).then((tabs) => {
     let url = tabs[0].url;
-    // console.log(longUrl);
     longUrl.value = url;
-    showUrl.textContent = `${url}`;
   });
 }
 
