@@ -2,6 +2,7 @@ const showUrl = document.getElementById("copy-url");
 const sendUrl = document.getElementById("submitUrl");
 const longUrl = document.getElementById("longurl");
 const form = document.getElementById("formsubmit");
+const copytoclipboard = document.getElementById("copytoclipboard");
 
 function getUrl() {
   browser.tabs.query({ currentWindow: true, active: true }).then((tabs) => {
@@ -23,13 +24,13 @@ url.addEventListener("click", getUrl);
 const sendLongUrl = document.querySelector("#submiturl");
 sendLongUrl.addEventListener("click", submitUrl);
 
-function sendData() {
+async function sendData() {
   const ath = localStorage.getItem("authKey");
   const grp = localStorage.getItem("groupKey");
   const origninalUrl = longUrl.value;
   // console.log(ath);
 
-  let bitlyUrl = fetch("https://api-ssl.bitly.com/v4/shorten", {
+  const bitlyUrl = await fetch("https://api-ssl.bitly.com/v4/shorten", {
     method: "POST",
     headers: {
       Authorization: ath,
@@ -42,15 +43,16 @@ function sendData() {
     }),
   });
 
-  bitlyUrl.then(success, error);
+  var data = await bitlyUrl.json();
+  console.log(data);
+  showUrl.innerText = data["link"];
+}
 
-  async function success(value) {
-    console.log(value);
-  }
-
-  async function error(error) {
-    console.log(error);
-  }
+function urlCopy() {
+  const cb = navigator.clipboard;
+  const data = document.querySelector("#copy-url");
+  cb.writeText(data.innerText);
 }
 
 form.addEventListener("click", sendData);
+copytoclipboard.addEventListener("click", urlCopy);
