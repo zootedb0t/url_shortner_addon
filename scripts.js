@@ -21,7 +21,7 @@ function submitUrl() {
 const url = document.querySelector("#geturl");
 url.addEventListener("click", getUrl);
 
-const sendLongUrl = document.querySelector("#submiturl");
+const sendLongUrl = document.querySelector("#formsubmit");
 sendLongUrl.addEventListener("click", submitUrl);
 
 async function sendData() {
