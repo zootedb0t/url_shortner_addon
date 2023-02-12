@@ -1,61 +1,56 @@
-const debug = document.getElementById("copy-url");
+const showUrl = document.getElementById("copy-url");
+const sendUrl = document.getElementById("submitUrl");
+const longUrl = document.getElementById("longurl");
+const form = document.getElementById("formsubmit");
 
 function getUrl() {
   browser.tabs.query({ currentWindow: true, active: true }).then((tabs) => {
-    let tabUrl = tabs[0].url;
-    console.log(tabUrl);
-    debug.innerHTML = `<li>${tabUrl}</li>`;
+    let url = tabs[0].url;
+    // console.log(longUrl);
+    longUrl.value = url;
+    showUrl.textContent = `${url}`;
   });
+}
+
+function submitUrl() {
+  let main_url = longUrl.value;
+  console.log(main_url);
 }
 
 const url = document.querySelector("#geturl");
 url.addEventListener("click", getUrl);
 
-// Access api from extension storage
+const sendLongUrl = document.querySelector("#submiturl");
+sendLongUrl.addEventListener("click", submitUrl);
 
-// function apiValue(key) {
-//   localStorage.setItem("auth", key.authCredentials.authorization);
-//   localStorage.setItem("group", key.authCredentials.groupid);
-// }
-// ath = localStorage.getItem("auth");
-// grp = localStorage.getItem("group");
-// console.log(ath);
-// console.log(grp);
+function sendData() {
+  const ath = localStorage.getItem("authKey");
+  const grp = localStorage.getItem("groupKey");
+  const origninalUrl = longUrl.value;
+  // console.log(ath);
 
-// function error() {
-//   console.log("Some Error Occured");
-// }
-
-// const getValue = browser.storage.local.get();
-// getValue.then(apiValue, error);
-
-// Another way of accessing extension storage
-
-browser.storage.local
-  .get()
-  .then(function (result) {
-    localStorage.setItem("authKey", result.authCredentials.authorization);
-    localStorage.setItem("groupKey", result.authCredentials.groupid);
-  })
-  .catch(function (error) {
-    console.log(error);
+  let bitlyUrl = fetch("https://api-ssl.bitly.com/v4/shorten", {
+    method: "POST",
+    headers: {
+      Authorization: ath,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      long_url: origninalUrl,
+      domain: "bit.ly",
+      group_guid: grp,
+    }),
   });
 
-const ath = localStorage.getItem("authKey");
-const grp = localStorage.getItem("groupKey");
-// Debugging
-// console.log(ath);
-// console.log(grp);
+  bitlyUrl.then(success, error);
 
-// fetch("https://api-ssl.bitly.com/v4/shorten", {
-//   method: "POST",
-//   headers: {
-//     Authorization: `${ath}`,
-//     "Content-Type": "application/json",
-//   },
-//   body: JSON.stringify({
-//     long_url: "https://dev.bitly.com",
-//     domain: "bit.ly",
-//     group_guid: `${grp}`,
-//   }),
-// });
+  async function success(value) {
+    console.log(value);
+  }
+
+  async function error(error) {
+    console.log(error);
+  }
+}
+
+form.addEventListener("click", sendData);

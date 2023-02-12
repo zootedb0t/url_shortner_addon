@@ -7,10 +7,13 @@
     <link href="style.css" rel="stylesheet" />
   </head>
   <body>
-    <!-- This button will send current url to bitly server -->
-    <button type="button" id="geturl">Submit</button>
-    <!-- This will show short url with copy button -->
-    <p id="copy-url">Just Testing</p>
+    <p id="copy-url"></p>
+    <form>
+      <input type="url" placeholder="Enter Url" id="longurl" required />
+      <button type="button" id="geturl">Get Url</button>
+      <button type="button" id="submiturl">Send Url</button>
+    </form>
+    <button type="submit" id="formsubmit">Submit Data</button>
     <script src="scripts.js"></script>
   </body>
 </html>
