@@ -1,12 +1,8 @@
 {
-  "background": {
-    "scripts": ["background.js"]
-  },
-
   "description": "Shorten url using bitly api.",
   "manifest_version": 3,
   "name": "URL Shortner",
-  "version": "1.0",
+  "version": "1.1",
   "homepage_url": "https://github.com/zootedb0t/url_shortner_addon",
 
   "icons": {
