@@ -41,9 +41,10 @@ async function sendData() {
     }),
   });
 
-  var data = await bitlyUrl.json();
-  console.log(data);
-  showUrl.innerText = data["link"];
+  const data = await bitlyUrl.json();
+  // Debugging
+  // console.log(data);
+  showUrl.innerText = data.link;
 }
 
 function urlCopy() {

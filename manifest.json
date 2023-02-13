@@ -1,4 +1,8 @@
 {
+  "background": {
+    "scripts": ["background.js"]
+  },
+
   "description": "Shorten url using bitly api.",
   "manifest_version": 3,
   "name": "URL Shortner",
@@ -8,17 +12,6 @@
   "icons": {
     "48": "icon.svg"
   },
-
-  //  "background": {
-  //    "scripts": ["scripts.js"]
-  //  },
-
-  //"browser_specific_settings": {
-  //  "gecko": {
-  //    "id": "urlshortner@protonmail.com",
-  //    "strict_min_version": "42.0"
-  //  }
-  //},
 
   "browser_specific_settings": {
     "gecko": {
