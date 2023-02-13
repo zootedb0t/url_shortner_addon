@@ -2,7 +2,7 @@
   "description": "Shorten url using bitly api.",
   "manifest_version": 3,
   "name": "URL Shortner",
-  "version": "1.1",
+  "version": "1.2",
   "homepage_url": "https://github.com/zootedb0t/url_shortner_addon",
 
   "icons": {
@@ -11,8 +11,8 @@
 
   "browser_specific_settings": {
     "gecko": {
-      "id": "urlshortner@protonmail.com",
-      "strict_min_version": "42.0"
+      "id": "05kraken@proton.me",
+      "strict_min_version": "101.0"
     }
   },
 

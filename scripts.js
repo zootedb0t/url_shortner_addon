@@ -3,6 +3,7 @@ const sendUrl = document.getElementById("submitUrl");
 const longUrl = document.getElementById("longurl");
 const form = document.getElementById("formsubmit");
 const copytoclipboard = document.getElementById("copytoclipboard");
+const openSetting = document.getElementById("setting-img");
 
 function getUrl() {
   browser.tabs.query({ currentWindow: true, active: true }).then((tabs) => {
@@ -21,6 +22,10 @@ url.addEventListener("click", getUrl);
 
 const sendLongUrl = document.querySelector("#formsubmit");
 sendLongUrl.addEventListener("click", submitUrl);
+
+openSetting.addEventListener("click", () => {
+  browser.runtime.openOptionsPage();
+});
 
 async function sendData() {
   const ath = localStorage.getItem("authKey");
@@ -47,11 +52,11 @@ async function sendData() {
   showUrl.innerText = data.link;
 }
 
-function urlCopy() {
+form.addEventListener("click", sendData);
+
+copytoclipboard.addEventListener("click", () => {
   const cb = navigator.clipboard;
   const data = document.querySelector("#copy-url");
   cb.writeText(data.innerText);
-}
+});
 
-form.addEventListener("click", sendData);
-copytoclipboard.addEventListener("click", urlCopy);

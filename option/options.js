@@ -9,6 +9,7 @@ function storeApi() {
       groupid: groupId.value,
     },
   });
+  alert("API key added!!");
 }
 
 // Access api from extension storage
