@@ -1,33 +1,25 @@
 const showUrl = document.getElementById("copy-url");
-const sendUrl = document.getElementById("submitUrl");
 const longUrl = document.getElementById("longurl");
 const form = document.getElementById("formsubmit");
 const copytoclipboard = document.getElementById("copytoclipboard");
 const openSetting = document.getElementById("setting-img");
 
-function getUrl() {
+// Put current tab url into input field
+const url = document.querySelector("#geturl");
+url.addEventListener("click", () => {
   browser.tabs.query({ currentWindow: true, active: true }).then((tabs) => {
     let url = tabs[0].url;
     longUrl.value = url;
   });
-}
+});
 
-function submitUrl() {
-  let main_url = longUrl.value;
-  console.log(main_url);
-}
-
-const url = document.querySelector("#geturl");
-url.addEventListener("click", getUrl);
-
-const sendLongUrl = document.querySelector("#formsubmit");
-sendLongUrl.addEventListener("click", submitUrl);
-
+// Open options pages
 openSetting.addEventListener("click", () => {
   browser.runtime.openOptionsPage();
 });
 
-async function sendData() {
+// Send data to bitly server and fetch response
+form.addEventListener("click", async () => {
   const ath = localStorage.getItem("authKey");
   const grp = localStorage.getItem("groupKey");
   const origninalUrl = longUrl.value;
@@ -50,13 +42,13 @@ async function sendData() {
   // Debugging
   // console.log(data);
   showUrl.innerText = data.link;
-}
-
-form.addEventListener("click", sendData);
+  setTimeout(function () {
+    showUrl.innerHTML;
+  });
+});
 
 copytoclipboard.addEventListener("click", () => {
   const cb = navigator.clipboard;
   const data = document.querySelector("#copy-url");
   cb.writeText(data.innerText);
 });
-
