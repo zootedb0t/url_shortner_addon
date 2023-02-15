@@ -1,7 +1,6 @@
 const showUrl = document.getElementById("copy-url");
 const longUrl = document.getElementById("longurl");
 const form = document.getElementById("formsubmit");
-const copytoclipboard = document.getElementById("copytoclipboard");
 const openSetting = document.getElementById("setting-img");
 
 // Put current tab url into input field
@@ -18,12 +17,15 @@ openSetting.addEventListener("click", () => {
   browser.runtime.openOptionsPage();
 });
 
+// await used inside async function make program wait until promise resolves
 // Send data to bitly server and fetch response
 form.addEventListener("click", async () => {
   const ath = localStorage.getItem("authKey");
   const grp = localStorage.getItem("groupKey");
   const origninalUrl = longUrl.value;
   // console.log(ath);
+
+  showUrl.innerText = "LOADING...";
 
   const bitlyUrl = await fetch("https://api-ssl.bitly.com/v4/shorten", {
     method: "POST",
@@ -41,14 +43,15 @@ form.addEventListener("click", async () => {
   const data = await bitlyUrl.json();
   // Debugging
   // console.log(data);
-  showUrl.innerText = data.link;
-  setTimeout(function () {
-    showUrl.innerHTML;
-  });
-});
+  showUrl.textContent = data.link;
 
-copytoclipboard.addEventListener("click", () => {
-  const cb = navigator.clipboard;
-  const data = document.querySelector("#copy-url");
-  cb.writeText(data.innerText);
+  const elem = document.createElement("button");
+  elem.id = `copytoclipboard`;
+  elem.innerText = "Copy to clipboard";
+  elem.addEventListener("click", () => {
+    const cb = navigator.clipboard;
+    const data = document.querySelector("#copy-url");
+    cb.writeText(data.innerText);
+  });
+  document.body.appendChild(elem);
 });
