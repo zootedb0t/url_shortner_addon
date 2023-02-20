@@ -1,7 +1,8 @@
 body {
+  width: 100%;
   margin: 0px;
   padding: 10px;
-  background-color: silver;
+  background-color: #d4f1f4;
   box-sizing: border-box;
 }
 
@@ -12,22 +13,27 @@ form {
 }
 
 button {
-  background: #5f9341;
+  background: #189ab4;
   color: white;
-  border: 1px solid #5f9341;
+  border: 1px solid #189ab4;
   text-align: center;
   font-weight: bold;
 }
 
 button:hover {
   cursor: pointer;
-  background-color: #3e8e41;
+  background-color: #05445e;
 }
 
-#setting-img {
+#setting-img img {
   float: right;
   margin: 10px;
   height: 18px;
   width: 18px;
   cursor: pointer;
+  transition: transform 0.7s ease-in-out;
+}
+
+#setting-img img:hover {
+  transform: rotate(90deg);
 }

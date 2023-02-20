@@ -24,6 +24,6 @@ browser.storage.local
     localStorage.setItem("groupKey", result.authCredentials.groupid);
     alert("Api keys already added!!");
   })
-  .catch(function (error) {
-    alert("Please add api key!!\n" + error);
+  .catch(function () {
+    alert("Please add api key!!\n");
   });
