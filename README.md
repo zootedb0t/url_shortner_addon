@@ -16,10 +16,10 @@ https://api-ssl.bitly.com/v4/groups
 ```
 This return a json response with your `guid`.
 
-![1st](https://user-images.githubusercontent.com/62596687/219436939-e00c9b1b-49f8-4605-bb09-9f66f0020b81.png)
+![Screenshot_2023-02-20-10-43-38_1920x1080](https://user-images.githubusercontent.com/62596687/220016953-5ebef5b6-4cef-493d-95a9-277edc973391.png)
 
-![2nd](https://user-images.githubusercontent.com/62596687/218631971-e3061f4e-0195-48cd-a06c-062c0296e3b7.png)
+![Screenshot_2023-02-20-10-44-05_1920x1080](https://user-images.githubusercontent.com/62596687/220017002-d79c6835-871e-4856-a507-880999bc4853.png)
 
-![3rd](https://user-images.githubusercontent.com/62596687/219437106-1f4fcedf-8f11-4222-a4ef-229b066dd632.png)
+![Screenshot_2023-02-20-10-44-34_1920x1080](https://user-images.githubusercontent.com/62596687/220017058-0ea5cf51-bef8-43a3-ba93-b9077fa94a82.png)
 
 Similar to https://github.com/zootedb0t/url_shortner
