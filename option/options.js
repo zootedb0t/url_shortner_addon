@@ -13,17 +13,32 @@ submitKey.addEventListener("click", () => {
       },
     });
     alert("API key added!!");
+
+    // Access api from extension storage
+    browser.storage.local
+      .get()
+      .then((result) => {
+        localStorage.setItem("authKey", result.authCredentials.authorization);
+        localStorage.setItem("groupKey", result.authCredentials.groupid);
+      })
+      .catch(() => {
+        alert("Please add api key!!\n");
+      });
   }
 });
 
-// Access api from extension storage
-browser.storage.local
-  .get()
-  .then(function (result) {
-    localStorage.setItem("authKey", result.authCredentials.authorization);
-    localStorage.setItem("groupKey", result.authCredentials.groupid);
-    alert("Api keys already added!!");
-  })
-  .catch(function () {
-    alert("Please add api key!!\n");
-  });
+function onError(e) {
+  console.error(e);
+}
+
+function updateUI(restoredSettings) {
+  apiKey.value = restoredSettings.authCredentials.authorization || "";
+  groupId.value = restoredSettings.authCredentials.groupid || "";
+  const para = document.createElement("p");
+  para.id = `keypresent`;
+  para.innerText = "Api key already present";
+  document.body.appendChild(para);
+}
+
+const gettingApiKeys = browser.storage.local.get();
+gettingApiKeys.then(updateUI, onError);

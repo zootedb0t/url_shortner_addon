@@ -1,7 +1,9 @@
 body {
   margin: 0;
-  font-size: 45px;
+  padding-top: 10px;
+  font-size: 18px;
   background-color: #d4f1f4;
+  text-align: center;
 }
 
 #apiform {
@@ -9,4 +11,9 @@ body {
   margin-left: auto;
   margin-right: auto;
   text-align: left;
+}
+
+#keypresent {
+  text-align: center;
+  color: red;
 }
