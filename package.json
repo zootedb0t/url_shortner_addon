@@ -1,0 +1,29 @@
+{
+  "name": "y",
+  "version": "1.4.0",
+  "description": "URL shortner using bitly API.",
+  "main": "y",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zootedb0t/url_shortner_addon.git"
+  },
+  "keywords": [
+    "url-shortner"
+  ],
+  "author": "Rajeev Ranjan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zootedb0t/url_shortner_addon/issues"
+  },
+  "homepage": "https://github.com/zootedb0t/url_shortner_addon#readme",
+  "devDependencies": {
+    "eslint": "^8.35.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-n": "^15.6.1",
+    "eslint-plugin-promise": "^6.1.1"
+  }
+}
