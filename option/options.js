@@ -14,7 +14,7 @@ submitKey.addEventListener("click", () => {
     });
     alert("API key added!!");
 
-    // Access api from extension storage
+    // Set api-key to local storage
     browser.storage.local
       .get()
       .then((result) => {

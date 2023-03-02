@@ -23,35 +23,42 @@ form.addEventListener("click", async () => {
   const ath = localStorage.getItem("authKey");
   const grp = localStorage.getItem("groupKey");
   const origninalUrl = longUrl.value;
-  // console.log(ath);
 
   showUrl.innerText = "LOADING...";
 
-  const bitlyUrl = await fetch("https://api-ssl.bitly.com/v4/shorten", {
-    method: "POST",
-    headers: {
-      Authorization: ath,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      long_url: origninalUrl,
-      domain: "bit.ly",
-      group_guid: grp,
-    }),
-  });
+  if (origninalUrl !== "") {
+    try {
+      const bitlyUrl = await fetch("https://api-ssl.bitly.com/v4/shorten", {
+        method: "POST",
+        headers: {
+          Authorization: ath,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          long_url: origninalUrl,
+          domain: "bit.ly",
+          group_guid: grp,
+        }),
+      });
+      const data = await bitlyUrl.json();
+      // Debugging
+      // console.log(data);
+      showUrl.textContent = data.link;
 
-  const data = await bitlyUrl.json();
-  // Debugging
-  // console.log(data);
-  showUrl.textContent = data.link;
-
-  const elem = document.createElement("button");
-  elem.id = `copytoclipboard`;
-  elem.innerText = "Copy to clipboard";
-  elem.addEventListener("click", () => {
-    const cb = navigator.clipboard;
-    const data = document.querySelector("#copy-url");
-    cb.writeText(data.innerText);
-  });
-  document.body.appendChild(elem);
+      const elem = document.createElement("button");
+      elem.id = `copytoclipboard`;
+      elem.innerText = "Copy to clipboard";
+      elem.addEventListener("click", () => {
+        const cb = navigator.clipboard;
+        const data = document.querySelector("#copy-url");
+        cb.writeText(data.innerText);
+      });
+      document.body.appendChild(elem);
+    } catch (error) {
+      console.log(error);
+      showUrl.innerText = "An error occured!";
+    }
+  } else {
+    showUrl.innerText = "URL field cannot be empty";
+  }
 });
