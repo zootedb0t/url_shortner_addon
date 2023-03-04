@@ -1,3 +1,5 @@
+/* global browser */
+
 const showUrl = document.getElementById('copy-url')
 const longUrl = document.getElementById('longurl')
 const form = document.getElementById('formsubmit')
@@ -19,7 +21,7 @@ openSetting.addEventListener('click', () => {
 
 // await used inside async function make program wait until promise resolves
 // Send data to bitly server and fetch response
-form.addEventListener('click', async () => {
+form.addEventListener('click', async() => {
   const ath = localStorage.getItem('authKey')
   const grp = localStorage.getItem('groupKey')
   const origninalUrl = longUrl.value
@@ -32,7 +34,7 @@ form.addEventListener('click', async () => {
         method: 'POST',
         headers: {
           Authorization: ath,
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify({
           long_url: origninalUrl,

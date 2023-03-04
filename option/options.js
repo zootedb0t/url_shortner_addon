@@ -1,3 +1,5 @@
+/* global browser */
+
 const apiKey = document.querySelector('#apikey')
 const groupId = document.querySelector('#groupid')
 const submitKey = document.querySelector('#addkey')
